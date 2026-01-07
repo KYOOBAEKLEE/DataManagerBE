@@ -1,0 +1,160 @@
+{
+    "apis": [
+        {
+            "id": "lipper-assets-screening",
+            "category": "Lipper",
+            "name": "Lipper Assets (Screening)",
+            "endpoint": "/data/funds/v1/assets",
+            "method": "POST",
+            "description": "복잡한 기준(예: 이름에 'Janus' 포함, 자산 유형 'Equity')을 사용하여 펀드를 검색합니다.",
+            "parameters": [
+                {
+                    "name": "body",
+                    "type": "json",
+                    "required": true,
+                    "description": "스크리닝 기준 JSON",
+                    "default": "{\n  \"universe\": {\n    \"screen\": {\n      \"criteriaItems\": [\n        {\n          \"selectedItem\": \"n10653\",\n          \"compareValue\": \"janus\",\n          \"operation\": \"Contains\"\n        }\n      ]\n    }\n  },\n  \"pager\": {\n    \"pageSize\": 5\n  }\n}"
+                }
+            ],
+            "credentialType": "LIPPER"
+        },
+        {
+            "id": "lipper-assets-list",
+            "category": "Lipper",
+            "name": "Lipper Assets (By Symbol List)",
+            "endpoint": "/data/funds/v1/assets",
+            "method": "GET",
+            "description": "심볼 리스트(예: Lipper ID, RIC)를 사용하여 여러 자산의 데이터를 가져옵니다.",
+            "parameters": [
+                {
+                    "name": "symbols",
+                    "type": "string",
+                    "required": true,
+                    "description": "콤마로 구분된 심볼 (예: 40000644, 40027312)"
+                },
+                {
+                    "name": "properties",
+                    "type": "string",
+                    "required": false,
+                    "description": "예: names,prices,codes"
+                },
+                {
+                    "name": "currency",
+                    "type": "select",
+                    "required": false,
+                    "description": "통화",
+                    "options": [
+                        "USD",
+                        "EUR",
+                        "GBP",
+                        "JPY",
+                        "CNY",
+                        "KRW"
+                    ]
+                }
+            ],
+            "credentialType": "LIPPER"
+        },
+        {
+            "id": "lipper-assets-id",
+            "category": "Lipper",
+            "name": "Lipper Asset by ID",
+            "endpoint": "/data/funds/v1/assets/{id}",
+            "method": "GET",
+            "description": "ID를 사용하여 단일 자산의 데이터를 가져옵니다.",
+            "parameters": [
+                {
+                    "name": "id",
+                    "type": "string",
+                    "required": true,
+                    "description": "자산 ID (예: 40000644)"
+                },
+                {
+                    "name": "properties",
+                    "type": "string",
+                    "required": false,
+                    "description": "예: names,prices"
+                },
+                {
+                    "name": "currency",
+                    "type": "select",
+                    "required": false,
+                    "description": "통화",
+                    "options": [
+                        "USD",
+                        "EUR",
+                        "GBP",
+                        "JPY",
+                        "CNY",
+                        "KRW"
+                    ]
+                }
+            ],
+            "credentialType": "LIPPER"
+        },
+        {
+            "id": "lipper-ref-datapoints",
+            "category": "Lipper",
+            "name": "Lipper Reference (Data Points)",
+            "endpoint": "/data/funds/v1/assets/ref/datapoints",
+            "method": "GET",
+            "description": "사용 가능한 데이터 포인트(예: 속성, 코드)에 대한 메타데이터를 가져옵니다.",
+            "parameters": [
+                {
+                    "name": "properties",
+                    "type": "string",
+                    "required": false,
+                    "description": "속성별 필터 (예: names, attributes)"
+                },
+                {
+                    "name": "language",
+                    "type": "select",
+                    "required": false,
+                    "description": "메타데이터 언어",
+                    "options": [
+                        "ENG",
+                        "JPN",
+                        "KOR",
+                        "ZHS",
+                        "ZHT"
+                    ]
+                }
+            ],
+            "credentialType": "LIPPER"
+        },
+        {
+            "id": "lipper-ref-lookups",
+            "category": "Lipper",
+            "name": "Lipper Reference (Lookups)",
+            "endpoint": "/data/funds/v1/assets/ref/lookups",
+            "method": "GET",
+            "description": "사용 가능한 룩업 정보(언어, 통화, 유니버스 등)를 가져옵니다.",
+            "parameters": [
+                {
+                    "name": "language",
+                    "type": "select",
+                    "required": false,
+                    "description": "언어",
+                    "options": [
+                        "ENG",
+                        "JPN",
+                        "KOR",
+                        "ZHS",
+                        "ZHT"
+                    ]
+                }
+            ],
+            "credentialType": "LIPPER"
+        },
+        {
+            "id": "lipper-health",
+            "category": "Lipper",
+            "name": "Lipper Health Check",
+            "endpoint": "/data/funds/v1/healthcheck",
+            "method": "GET",
+            "description": "서비스 상태 점검.",
+            "parameters": [],
+            "credentialType": "LIPPER"
+        }
+    ]
+}
